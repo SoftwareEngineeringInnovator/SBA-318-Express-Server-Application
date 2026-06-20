@@ -1,4 +1,4 @@
-// This file handles all incident-related API routes.
+// This file handles all incident-related API routes
 
 import express from "express";
 import incidents from "../data/incidents.js";
@@ -13,21 +13,21 @@ router.get("/", (req, res) => {
   // list by filters
   let filteredIncidents = incidents;
 
-  // Filter by severity if the user adds ?severity=High to the URL.
+  // Filter by severity if the user adds ?severity=High to the URL
   if (severity) {
     filteredIncidents = filteredIncidents.filter(
       (incident) => incident.severity.toLowerCase() === severity.toLowerCase()
     );
   }
 
-  // Filter by status if the user adds ?status=Open to the URL.
+  // Filter by status if the user adds ?status=Open to the URL
   if (status) {
     filteredIncidents = filteredIncidents.filter(
       (incident) => incident.status.toLowerCase() === status.toLowerCase()
     );
   }
 
-  // Filter by category if the user adds ?category=Authentication to the URL.
+  // Filter by category if the user adds ?category=Authentication to the URL
   if (category) {
     filteredIncidents = filteredIncidents.filter(
       (incident) => incident.category.toLowerCase() === category.toLowerCase()
@@ -37,7 +37,7 @@ router.get("/", (req, res) => {
   res.json(filteredIncidents);
 });
 
-// GET /api/incidents/:id, this route shows incidents based on the ID in the URL.
+// GET /api/incidents/:id, this route shows incidents based on the ID in the URL
 router.get("/:id", (req, res, next) => {
   const incidentId = Number(req.params.id);
 
@@ -52,7 +52,7 @@ router.get("/:id", (req, res, next) => {
   res.json(incident);
 });
 
-// POST /api/incidents, this route creates a new incident.
+// POST /api/incidents, this route creates a new incident
 router.post("/", validateIncident, (req, res) => {
   const { userId, title, category, severity, status, description } = req.body;
 
@@ -69,14 +69,14 @@ router.post("/", validateIncident, (req, res) => {
     description,
   };
 
-  // This adds the new incident to our incidents array.
+  // This adds the new incident to our incidents array
   incidents.push(newIncident);
 
-  // 201 means something new was successfully created.
+  // 201 means something new was successfully created
   res.status(201).json(newIncident);
 });
 
-// PATCH /api/incidents/:id, this route updates an existing incident.
+// PATCH /api/incidents/:id, this route updates an existing incident
 router.patch("/:id", (req, res, next) => {
   const incidentId = Number(req.params.id);
 
@@ -98,6 +98,27 @@ router.patch("/:id", (req, res, next) => {
   if (description) incident.description = description;
 
   res.json(incident);
+});
+
+// DELETE /api/incidents/:id, this route removes an incident using the ID from the URL
+router.delete("/:id", (req, res, next) => {
+  const incidentId = Number(req.params.id);
+
+  const incidentIndex = incidents.findIndex((incident) => incident.id === incidentId);
+
+  if (incidentIndex === -1) {
+    const error = new Error("Incident not found.");
+    error.status = 404;
+    return next(error);
+  }
+
+  // splice will remove the incident from the array
+  const deletedIncident = incidents.splice(incidentIndex, 1);
+
+  res.json({
+    message: "Incident deleted successfully.",
+    deletedIncident: deletedIncident[0],
+  });
 });
 
 export default router;

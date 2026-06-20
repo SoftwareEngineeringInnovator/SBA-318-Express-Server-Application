@@ -7,7 +7,7 @@ const app = express();
 const PORT = 3000;
 
 // This middleware allows Express to read form data from HTML forms.
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
 
 // This middleware allows Express to read JSON data from API requests.
 app.use(express.json());

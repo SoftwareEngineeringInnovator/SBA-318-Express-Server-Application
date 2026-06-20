@@ -76,4 +76,28 @@ router.post("/", validateIncident, (req, res) => {
   res.status(201).json(newIncident);
 });
 
+// PATCH /api/incidents/:id, this route updates an existing incident.
+router.patch("/:id", (req, res, next) => {
+  const incidentId = Number(req.params.id);
+
+  const incident = incidents.find((incident) => incident.id === incidentId);
+
+  if (!incident) {
+    const error = new Error("Incident not found.");
+    error.status = 404;
+    return next(error);
+  }
+
+  const { title, category, severity, status, description } = req.body;
+
+  // These statements will update the fields in the request.
+  if (title) incident.title = title;
+  if (category) incident.category = category;
+  if (severity) incident.severity = severity;
+  if (status) incident.status = status;
+  if (description) incident.description = description;
+
+  res.json(incident);
+});
+
 export default router;

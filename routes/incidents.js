@@ -51,4 +51,28 @@ router.get("/:id", (req, res, next) => {
   res.json(incident);
 });
 
+// POST /api/incidents, this route creates a new incident.
+router.post("/", (req, res) => {
+  const { userId, title, category, severity, status, description } = req.body;
+
+  // Creates a new ID in the incident's array.
+  const newId = incidents.length + 1;
+
+  const newIncident = {
+    id: newId,
+    userId: Number(userId),
+    title,
+    category,
+    severity,
+    status,
+    description,
+  };
+
+  // This adds the new incident to our incidents array.
+  incidents.push(newIncident);
+
+  // 201 means something new was successfully created.
+  res.status(201).json(newIncident);
+});
+
 export default router;

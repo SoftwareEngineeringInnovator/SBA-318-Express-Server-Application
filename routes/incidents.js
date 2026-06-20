@@ -2,6 +2,7 @@
 
 import express from "express";
 import incidents from "../data/incidents.js";
+import validateIncident from "../middleware/validateIncident.js";
 
 const router = express.Router();
 
@@ -52,7 +53,7 @@ router.get("/:id", (req, res, next) => {
 });
 
 // POST /api/incidents, this route creates a new incident.
-router.post("/", (req, res) => {
+router.post("/", validateIncident, (req, res) => {
   const { userId, title, category, severity, status, description } = req.body;
 
   // Creates a new ID in the incident's array.

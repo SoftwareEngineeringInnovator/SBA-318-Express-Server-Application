@@ -5,9 +5,13 @@ import express from "express";
 import usersRouter from "./routes/users.js";
 import incidentsRouter from "./routes/incidents.js";
 import commentsRouter from "./routes/comments.js";
+import requestLogger from "./middleware/requestLog.js";
 
 const app = express();
 const PORT = 3000;
+
+// Logs the request in the terminal.
+app.use(requestLogger);
 
 // This middleware allows Express to read JSON data from API requests.
 app.use(express.json());

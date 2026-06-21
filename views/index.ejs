@@ -1,0 +1,68 @@
+<!-- Dashboard page for the Cybersecurity Incident Tracker -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- The page title comes from index.js using res.render() -->
+  <title><%= pageTitle %></title>
+
+  <!-- This connects our EJS page to the CSS file inside the public folder -->
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <!-- Header section for the top of the page -->
+  <header class="site-header">
+    <h1><%= pageTitle %></h1>
+    <div class="header">
+            <div class="logo">
+                <span class="icon">⬡</span>
+                <span class="text-logo">CYBER<strong>SHIELD</strong></span>
+            </div>
+    </div>
+  </header>
+
+  <!-- Main content area of the dashboard -->
+  <main class="container">
+
+    <!-- Incidents Section -->
+    <section class="dashboard-summary">
+      <div class="summary-card">
+        <h2>Total Incidents</h2>
+
+        <!-- incidents.length counts how many incident objects are in the array -->
+        <p><%= incidents.length %></p>
+      </div>
+    </section>
+
+    <!-- Displays current incident reports -->
+    <section class="incident-list">
+      <h2>Current Incident Reports</h2>
+
+      <!-- Loop that creates an incident item -->
+      <% incidents.forEach((incident) => { %>
+
+        <!-- Display incidents -->
+        <article class="incident-card">
+
+          <!-- Incidemt division sections -->
+          <div class="incident-card-header">
+            <h3><%= incident.title %></h3>
+            <span class="severity severity-<%= incident.severity.toLowerCase() %>">
+              <%= incident.severity %></span>
+          </div>
+
+          <!-- Details for each incident -->
+          <p><strong>Category:</strong> <%= incident.category %></p>
+          <p><strong>Status:</strong> <%= incident.status %></p>
+          <p><strong>Description:</strong> <%= incident.description %></p>
+          <p><strong>Reported By User ID:</strong> <%= incident.userId %></p>
+        </article>
+
+      <% }) %>
+    </section>
+  </main>
+</body>
+</html>

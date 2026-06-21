@@ -1,0 +1,135 @@
+/* Basic page styling for the Cybersecurity Incident Tracker */
+/* body style */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: whitesmoke;
+  color: black;
+}
+
+/* Top header section */
+.site-header {
+  background-color: black;
+  color: white;
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main title section */
+.site-header h1 {
+  margin-bottom: 8px;
+}
+
+/* container setup */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 24px auto;
+}
+
+/* logo and header section */
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 2px;
+}
+
+.logo strong {
+  color: darkolivegreen;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+/* Summary section */
+.dashboard-summary {
+  margin-bottom: 24px;
+}
+
+/* Display total number of incidents */
+.summary-card {
+  background-color: white;
+  border-left: 6px solid blue;
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Summary title section */
+.summary-card h2 {
+  margin-top: 0;
+}
+
+/* Iincident number section */
+.summary-card p {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Incident list title section */
+.incident-list h2 {
+  margin-bottom: 16px;
+}
+
+/* Styles incident report card section */
+.incident-card {
+  background-color: white;
+  padding: 18px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  border: 1px solid blue;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Display incident title and severity label section */
+.incident-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Incident title section */
+.incident-card h3 {
+  margin-top: 0;
+}
+
+/* This styles the severity badge on each incident card */
+/* Style for severity badge */
+.severity {
+  padding: 6px 10px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Low severity is yellow */
+.severity-low {
+  background-color: yellow;
+  color: black;
+}
+
+/* Medium severity is darkorange */
+.severity-medium {
+  background-color: darkorange;
+  color: black;
+}
+
+/* High severity is red */
+.severity-high {
+  background-color: darkred;
+  color: black;
+}
+
+/* Critical severity is dark red */
+.severity-critical {
+  background-color: red;
+  color: black;
+}

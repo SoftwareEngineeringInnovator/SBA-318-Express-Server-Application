@@ -29,6 +29,15 @@ const incidents = [
     status: "Open",
     description: "Antivirus software detected possible malware on a workstation.",
   },
+  {
+    id: 4,
+    userId: 4,
+    title: "Wrong Password Attempt",
+    category: "User Typo/Error",
+    severity: "Low",
+    status: "Open",
+    description: "User was using lower case characters instead of capital characters.",
+  },
 ];
   
 export default incidents;

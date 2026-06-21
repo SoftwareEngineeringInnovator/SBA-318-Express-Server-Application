@@ -133,3 +133,63 @@ body {
   background-color: red;
   color: black;
 }
+
+/* This section styles the new incident form */
+.form-section {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* This keeps the form fields stacked and easy to read */
+.incident-form {
+  display: grid;
+  gap: 14px;
+}
+
+/* Each label and input group gets its own small block */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels are bold so users know what each field is for */
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* Inputs, selects, and textareas share the same clean style */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* This keeps the textarea from being resized sideways */
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Button style for adding a new incident */
+.incident-form button {
+  width: fit-content;
+  background-color: #17202a;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Small hover effect so the button feels interactive */
+.incident-form button:hover {
+  background-color: #2c7be5;
+}

@@ -14,6 +14,7 @@ const PORT = 3000;
 app.use(requestLogger);
 
 // This middleware allows Express to read JSON data from API requests.
+app.use(express.urlencoded())
 app.use(express.json());
 
 // Basic home route to test that the server is working.
@@ -26,8 +27,13 @@ app.use("/api/users", usersRouter);
 app.use("/api/incidents", incidentsRouter);
 app.use("/api/comments", commentsRouter);
 
-// Simple temporary error handler.
-// Later we will move this into better error-handling middleware.
+// Error handler to check for routes that are not valid
+app.use((req, res, next) => {
+  const error = new Error(`Route not found: ${req.originalUrl}`);
+  error.status = 404;
+  next(error);
+});
+// Error handler.
 app.use((err, req, res, next) => {
   res.status(err.status || 500).json({
     error: err.message || "Something went wrong on the server.",

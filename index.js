@@ -6,20 +6,30 @@ import usersRouter from "./routes/users.js";
 import incidentsRouter from "./routes/incidents.js";
 import commentsRouter from "./routes/comments.js";
 import requestLogger from "./middleware/requestLog.js";
+import incidents from "./data/incidents.js";
 
 const app = express();
 const PORT = 3000;
 
+// Set EJS 
+app.set("view engine", "ejs");
+
+// Files from the public folder: CSS
+app.use(express.static("public"));
+
 // Logs the request in the terminal.
 app.use(requestLogger);
 
-// This middleware allows Express to read JSON data from API requests.
+// This middleware allows Express to read JSON data from API requests
 app.use(express.urlencoded())
 app.use(express.json());
 
-// Basic home route to test that the server is working.
+// Basic home route to test that the server is working. renders the page using ejs
 app.get("/", (req, res) => {
-  res.send("Cybersecurity Incident Tracker server is running.");
+  res.render("index", {
+    pageTitle: "Cybersecurity Incident Tracker",
+    incidents,
+  });
 });
 
 // These lines connect our route files to the main server.

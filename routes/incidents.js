@@ -72,8 +72,11 @@ router.post("/", validateIncident, (req, res) => {
   // This adds the new incident to our incidents array
   incidents.push(newIncident);
 
+  // If the request came from the HTML form, send the user back to the dashboard.
+res.redirect("/");
+
   // 201 means something new was successfully created
-  res.status(201).json(newIncident);
+  // res.status(201).json(newIncident);
 });
 
 // PATCH /api/incidents/:id, this route updates an existing incident

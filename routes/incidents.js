@@ -52,6 +52,44 @@ router.get("/:id", (req, res, next) => {
   res.json(incident);
 });
 
+// GET /api/incidents/:id/download, this route downloads the incidents from the report page
+router.get("/:id/download", (req, res, next) => {
+  const incidentId = Number(req.params.id);
+
+  const incident = incidents.find((incident) => incident.id === incidentId);
+
+  if (!incident) {
+    const error = new Error("Incident not found.");
+    error.status = 404;
+    return next(error);
+  }
+
+  const report = `
+CYBERSHIELD INCIDENT REPORT
+
+Incident ID: ${incident.id}
+Reported By User ID: ${incident.userId}
+Title: ${incident.title}
+Category: ${incident.category}
+Severity: ${incident.severity}
+Status: ${incident.status}
+
+Description:
+${incident.description}
+`;
+
+  // Download the report as a text file.
+  res.setHeader(
+    "Content-Disposition",
+    `attachment; filename=incident-${incident.id}-report.txt`
+  );
+
+  // The file will be downloaded as plain text.
+  res.setHeader("Content-Type", "text/plain");
+
+  res.send(report);
+});
+
 // POST /api/incidents, this route creates a new incident
 router.post("/", validateIncident, (req, res) => {
   const { userId, title, category, severity, status, description } = req.body;

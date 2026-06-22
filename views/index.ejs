@@ -122,6 +122,9 @@
           <p><strong>Status:</strong> <%= incident.status %></p>
           <p><strong>Description:</strong> <%= incident.description %></p>
           <p><strong>Reported By User ID:</strong> <%= incident.userId %></p>
+
+          <!-- This link downloads the selected incident as a text report -->
+           <a href="/api/incidents/<%= incident.id %>/download" class="download-button"> Download Report</a>
         </article>
 
       <% }) %>

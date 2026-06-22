@@ -1,0 +1,12 @@
+
+CYBERSHIELD INCIDENT REPORT
+
+Incident ID: 2
+Reported By User ID: 2
+Title: Phishing Email Reported
+Category: Email Security
+Severity: Medium
+Status: Investigating
+
+Description:
+An employee reported a suspicious email asking for password information.
